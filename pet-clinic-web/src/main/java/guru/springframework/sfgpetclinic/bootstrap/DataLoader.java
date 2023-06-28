@@ -1,9 +1,12 @@
 package guru.springframework.sfgpetclinic.bootstrap;
 
+import java.time.LocalDate;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import guru.springframework.sfgpetclinic.model.Owner;
+import guru.springframework.sfgpetclinic.model.Pet;
 import guru.springframework.sfgpetclinic.model.PetType;
 import guru.springframework.sfgpetclinic.model.Vet;
 import guru.springframework.sfgpetclinic.services.OwnerService;
@@ -39,15 +42,34 @@ public class DataLoader implements CommandLineRunner {
 		Owner owner1 = new Owner();
 		owner1.setFirstName("Roberto");
 		owner1.setLastName("Collacio");
-
+		owner1.setAddress("Avenida Galicia 34");
+		owner1.setCity("Gijón");
+		owner1.setTelephone("123456789");
+		
+		Pet robertosPet = new Pet();
+		robertosPet.setPetType(savedDogPetType);
+		robertosPet.setOwner(owner1);
+		robertosPet.setBirthDate(LocalDate.now());
+		robertosPet.setName("Chipas");
+		owner1.getPets().add(robertosPet);
+		
 		ownerService.save(owner1);
 
 		Owner owner2 = new Owner();
 		owner2.setFirstName("Carlos");
 		owner2.setLastName("Pérez");
-
+		owner2.setAddress("Calle brasil 2");
+		owner2.setCity("Gijón");
+		owner2.setTelephone("999453275");
 		ownerService.save(owner2);
 
+		Pet carlosPet = new Pet();
+		carlosPet.setPetType(savedCatPetType);
+		carlosPet.setOwner(owner2);
+		carlosPet.setBirthDate(LocalDate.now());
+		carlosPet.setName("Mickey");
+		owner2.getPets().add(carlosPet);
+		
 		System.out.println("Owners cargados.......");
 
 		Vet vet1 = new Vet();
