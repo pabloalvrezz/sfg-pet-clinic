@@ -13,10 +13,12 @@ public abstract class AbstractMapService<T extends BaseEntity, ID> {
 
 	protected Map<Long, T> map = new HashMap<>();
 
+	// metodo que usamos para dar un hasmap de todos los objetos que el map contiene
 	Set<T> findAll() {
 		return new HashSet<>(map.values());
 	}
 
+	// metodo que usamos para encontrar un objeto por su id
 	T findById(ID id) {
 		return map.get(id);
 	}
@@ -31,7 +33,7 @@ public abstract class AbstractMapService<T extends BaseEntity, ID> {
 			if (object.getId() == null)
 				object.setId(getNextId());
 			map.put(getNextId(), object);
-		}
+		} 	
 		
 		// si el objeto es nulo lanzamos una excepcion ya que este no pude serlo
 		else {
