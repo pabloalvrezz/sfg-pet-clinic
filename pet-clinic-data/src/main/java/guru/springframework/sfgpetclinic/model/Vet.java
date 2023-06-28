@@ -9,7 +9,15 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "Vets")
 public class Vet extends Person {
@@ -19,12 +27,5 @@ public class Vet extends Person {
 	inverseJoinColumns = @JoinColumn(name = "specialty_id"))
 	private Set<Speciality> specialities = new HashSet<>();
 
-	public Set<Speciality> getSpecialities() {
-		return specialities;
-	}
-
-	public void setSpecialities(Set<Speciality> specialities) {
-		this.specialities = specialities;
-	}
 
 }
