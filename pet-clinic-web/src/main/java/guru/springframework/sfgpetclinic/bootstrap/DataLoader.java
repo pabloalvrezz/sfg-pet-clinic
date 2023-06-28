@@ -14,18 +14,28 @@ import guru.springframework.sfgpetclinic.services.VetService;
 public class DataLoader implements CommandLineRunner {
 
 	private final OwnerService ownerService;
-	private final VetService vetService;
-	private final PetTypeService petTypeService;
-
+    private final VetService vetService;
+    private final PetTypeService petTypeService;
+    
 	public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService) {
 		this.ownerService = ownerService;
-		this.vetService = vetService;
-		this.petTypeService = petTypeService;
+        this.vetService = vetService;
+        this.petTypeService = petTypeService;
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
 
+		PetType dog = new PetType();
+		dog.setName("Dog");
+		PetType savedDogPetType = petTypeService.save(dog);
+
+		PetType cat = new PetType();
+		cat.setName("Cat");
+		PetType savedCatPetType = petTypeService.save(cat);
+
+		System.out.println("Tipos de mascota cargados......");
+		
 		Owner owner1 = new Owner();
 		owner1.setFirstName("Roberto");
 		owner1.setLastName("Collacio");
@@ -53,18 +63,6 @@ public class DataLoader implements CommandLineRunner {
 		vetService.save(vet2);
 
 		System.out.println("Vets cargados......");
-		
-		PetType dog = new PetType();
-		dog.setName("Dog");
-		
-		petTypeService.save(dog);
-		
-		PetType cat = new PetType();
-		cat.setName("cat");
-		
-		petTypeService.save(cat);
-		
-		System.out.println("Pet Types cargados");
 
 	}
 
