@@ -44,6 +44,7 @@ public class Owner extends Person {
 		if (pets != null) {
 			this.pets = pets;
 		}
+		
 	}
 
 	public Pet getPet(String name) {
