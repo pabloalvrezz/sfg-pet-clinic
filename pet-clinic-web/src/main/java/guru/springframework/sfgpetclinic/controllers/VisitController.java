@@ -25,9 +25,9 @@ public class VisitController {
 	private final VisitService visitService;
 	private final PetService petService;
 
-	public VisitController(VisitService visitService, PetService petService) {
-		this.visitService = visitService;
-		this.petService = petService;
+	public VisitController(VisitService visits, PetService pets) {
+		this.visitService = visits;
+		this.petService = pets;
 	}
 
 	@InitBinder
